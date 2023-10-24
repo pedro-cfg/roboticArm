@@ -8,12 +8,13 @@ ServoMotor::~ServoMotor()
 { 
 }
 
-ServoMotor::ServoMotor(int pin, int bangle, bool inv)
+ServoMotor::ServoMotor(int pin, int bangle, bool inv, int s)
 {
     base_angle = bangle;
     inverted = inv;
     servo.attach(pin);
     real_angle = -1;
+    speed = s;
 }
 
 void ServoMotor::setPosition(int a)
@@ -44,21 +45,27 @@ void ServoMotor::setPosition(int a)
 
 void ServoMotor::move(int a)
 {
-    int final_angle;
-    if(real_angle < a)
+    if(speed == 1)
     {
-        for(int i = real_angle + 1; i<=a; i++)
-        {
-            servo.write(i);
-            delay(8);
-        }
+        servo.write(a);
     }
     else
     {
-        for(int i = real_angle - 1; i>=a; i--)
+        if(real_angle < a)
         {
-            servo.write(i);
-            delay(10);
+            for(int i = real_angle + 1; i<=a; i++)
+            {
+                servo.write(i);
+                delay(speed);
+            }
+        }
+        else
+        {
+            for(int i = real_angle - 1; i>=a; i--)
+            {
+                servo.write(i);
+                delay(speed);
+            }
         }
     }
 }

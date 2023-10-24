@@ -1,17 +1,23 @@
 #include "ServoManager.h"
 
 ServoManager::ServoManager():
-servo1(5, -7, true), 
-servo2(18, 18, false), 
-servo3(19, 0, true), 
-servo4(23, 5, false) 
+servo1(5, 5, true,1), 
+servo2(18, 18, false,8), 
+servo3(19, 0, true,8), 
+servo4(23, -10, false,8) 
 { 
     l0 = 110;
     l1 = 139;
     l2 = 162;
     l3 = 71;
-    h = 10;
+    h = 5;
     log = 0.1;
+    positions[0][0] = Position(-70,110);
+    positions[1][0] = Position(-75,185);
+    positions[2][0] = Position(-75,260);
+    positions[0][1] = Position(30,90);
+    positions[1][1] = Position(20,185);
+    positions[2][1] = Position(10,260);
 }
 
 ServoManager::~ServoManager() 
@@ -20,25 +26,24 @@ ServoManager::~ServoManager()
 
 void ServoManager::initialPosition()
 {
-    servo2.setPosition(0);
+    servo2.setPosition(-10);
     servo3.setPosition(90);
-    servo4.setPosition(170);
-    servo3.setPosition(150);
-    servo1.setPosition(90);
+    servo4.setPosition(45);
+    servo1.setPosition(95);
+    //servo3.setPosition(160);
 }
 
-void ServoManager::movement()
+void ServoManager::movement(int x, int y)
 {
-    // servo3.setPosition(50);
-    // servo4.setPosition(30);
-    // servo2.setPosition(50);
+    calculate(x,y);
+    initialPosition();
+    delay(2000);
     servo1.setPosition(angle_motor1);
-    delay(500);
+    delay(1000);
     servo3.setPosition(angle_motor3);
     servo4.setPosition(angle_motor4);
     servo2.setPosition(angle_motor2);
-    delay(1000);
-    //initialPosition();
+    delay(100);
 }
 
 void ServoManager::calculate(int x, int y)
@@ -59,7 +64,13 @@ void ServoManager::calculate(int x, int y)
     angle_motor2 = 180 - (int)angle01;
     angle_motor3 = 180 - (int)angle12;
     angle_motor4 = 180 - (int)angle23;
-    log = angle_motor1;
+    log = y;
+}
+
+void ServoManager::move_to_position(int line, int col)
+{
+    Position p = positions[line][col];
+    movement(p.getX(),p.getY());
 }
 
 double ServoManager::get_log()

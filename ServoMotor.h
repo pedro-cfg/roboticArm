@@ -13,10 +13,11 @@ private:
     int base_angle;
     int angle;
     int real_angle;
+    int speed;
     bool inverted;
 public:
     ServoMotor();
-    ServoMotor(int pin, int bangle, bool inv);
+    ServoMotor(int pin, int bangle, bool inv, int s);
     ~ServoMotor();
     void setPosition(int a);
     void move(int a);
