@@ -1,4 +1,4 @@
-#include "Headers/ServoManager.h"
+#include "ServoManager.h"
 
 #define MAGNET 17
 

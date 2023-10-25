@@ -1,11 +1,11 @@
 #ifndef SERVO_MOTOR
 #define SERVO_MOTOR
 
-//#include <dummy.h>
-#include "../ESP32_Servo.h"
-// #include <analogWrite.h>
-// #include <ESP32Tone.h>
-// #include <ESP32PWM.h>
+#include <dummy.h>
+#include <ESP32Servo.h>
+#include <analogWrite.h>
+#include <ESP32Tone.h>
+#include <ESP32PWM.h>
 
 class ServoMotor {
 private:

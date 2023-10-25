@@ -1,4 +1,4 @@
-#include "Headers/ServoMotor.h"
+#include "ServoMotor.h"
 
 ServoMotor::ServoMotor() 
 { 

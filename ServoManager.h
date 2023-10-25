@@ -2,8 +2,8 @@
 #define SERVO_MANAGER
 
 #include <math.h>
-#include "Headers/ServoMotor.h"
-#include "Headers/Position.h"
+#include "ServoMotor.h"
+#include "Position.h"
 
 #define PI 3.14156
 
