@@ -14,33 +14,37 @@ void setup() {
 void loop() {
 
   /*Comandos de movimentação do braço*/
-
-  sm.move_to_position(0,0);
-  delay(5000);
  
-  sm.move_to_position(1,0);
-  delay(5000);
- 
-  sm.move_to_position(2,0);
-  delay(5000);
+  sm.initialPosition();
+  digitalWrite(MAGNET,HIGH);
+  sm.move_to_pieces();
+  delay(1000);
 
-  sm.move_to_position(0,1);
-  delay(5000);
- 
-  sm.move_to_position(1,1);
-  delay(5000);
- 
-  sm.move_to_position(2,1);
-  delay(5000);
-
-  sm.move_to_position(0,2);
-  delay(5000);
-
+  sm.intermediaryPosition();
   sm.move_to_position(1,2);
-  delay(5000);
+  digitalWrite(MAGNET,LOW);
+  delay(1000);
 
-  sm.move_to_position(2,2);
-  delay(5000);
+  sm.initialPosition();
+  digitalWrite(MAGNET,HIGH);
+  sm.move_to_pieces();
+  delay(1000);
+
+  sm.intermediaryPosition();
+  sm.move_to_position(1,1);
+  digitalWrite(MAGNET,LOW);
+  delay(1000);
+
+  sm.initialPosition();
+  digitalWrite(MAGNET,HIGH);
+  sm.move_to_pieces();
+  delay(1000);
+
+  sm.intermediaryPosition();
+  sm.move_to_position(1,0);
+  digitalWrite(MAGNET,LOW);
+  delay(1000);
+
 
   sm.initialPosition(); /*Retorna a posição inicial e espera*/
   Serial.println(sm.get_log()); /*Método para debug - o gerenciador retorna a variável a ser printada no Serial*/

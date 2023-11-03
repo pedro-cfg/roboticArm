@@ -13,6 +13,7 @@ private:
     ServoMotor servo2;
     ServoMotor servo3;
     ServoMotor servo4;
+    Position pieces;
     Position positions[3][3]; /*Matriz de posições do tabuleiro e suas coodenadas*/
     /*Declaração das variáveis usadas nas contas*/
     double xret,yret,dpol,angle_pol,h_triangle,d,d_root,angle0,angle1,angle12,angle01,angle23;
@@ -24,7 +25,9 @@ public:
     ServoManager();
     ~ServoManager();
     void move_to_position(int line, int col);
+    void move_to_pieces();
     void initialPosition();
+    void intermediaryPosition();
     void movement(int x, int y);
     void calculate(int x, int y);
     double get_log();

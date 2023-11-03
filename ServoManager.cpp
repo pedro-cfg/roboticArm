@@ -18,13 +18,14 @@ servo4(23, -12, false,10)
     l3 = 71;
     h = -15; /*Altura desejada até o chão*/
     log = 0.1;
-    positions[0][0] = Position(-55,85);  /*Inicia as posições do tabuleiro*/
+    pieces = Position(196,136);
+    positions[0][0] = Position(-60,85);  /*Inicia as posições do tabuleiro*/
     positions[1][0] = Position(-62,175);
-    positions[2][0] = Position(-70,265);
-    positions[0][1] = Position(27,60);
-    positions[1][1] = Position(25,155);
-    positions[2][1] = Position(20,260);
-    positions[0][2] = Position(85,38);
+    positions[2][0] = Position(-85,265);
+    positions[0][1] = Position(22,50);
+    positions[1][1] = Position(25,145);
+    positions[2][1] = Position(20,255);
+    positions[0][2] = Position(75,38);
     positions[1][2] = Position(108,140);
     positions[2][2] = Position(115,242);
 }
@@ -43,17 +44,23 @@ void ServoManager::initialPosition()
     servo3.setPosition(160);
 }
 
+void ServoManager::intermediaryPosition()
+{
+    servo2.setPosition(0); 
+    servo3.setPosition(90);
+}
+
 /*Realiza um movimento para as coodenadas retângulares x e y,
 sendo o ponto (0,0) o centro da base do braço*/
 void ServoManager::movement(int x, int y)
 {
     calculate(x,y); /*Chama o método para realizar as contas dos ângulos dos motores*/
-    initialPosition(); /*Chama a posição inicial para evitar que o braço realize 
-    um movimento prejudicial (Bata em alguma superfície durante o movimento)*/
-    delay(2000);
+    //initialPosition(); /*Chama a posição inicial para evitar que o braço realize 
+    //um movimento prejudicial (Bata em alguma superfície durante o movimento)*/
+    //delay(2000);
     servo1.setPosition(angle_motor1); /*Movimenta a base para o ângulo polar desejado*/
     servo2.setPosition(-10);
-    delay(3000); /*Espera que o movimento tenha sido realizado por completo*/
+    delay(1000); /*Espera que o movimento tenha sido realizado por completo*/
     servo3.setPosition(angle_motor3); /*Realiza os demais movimentos, na ordem que evita batidas em superfícies*/
     servo4.setPosition(angle_motor4);
     servo2.setPosition(angle_motor2);
@@ -90,6 +97,11 @@ void ServoManager::move_to_position(int line, int col)
 {
     Position p = positions[line][col];
     movement(p.getX(),p.getY());
+}
+
+void ServoManager::move_to_pieces()
+{
+    movement(pieces.getX(),pieces.getY());
 }
 
 /*Método que retorna o log para ser mostrado na saída Serial*/
