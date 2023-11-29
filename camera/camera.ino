@@ -954,7 +954,26 @@ void btConnect()
 
 void estado_final()
 {
-
+//  getImagem();
+//  delay(200);
+//  media_verde();
+//  verde_em_casas();
+//  media_vermelha();
+//  vermelho_em_casas();
+//  preenche_vetor();
+//  printa_vetor();
+//  for(int j = 0; j < 3; j++)
+//  {
+//    for(int i = 0; i < 3; i++)
+//    {
+//      if(parcial[i][j] == '_' && vetor[i][j] == '_')
+//      {
+//        estado = 0;
+//        luz = 1;
+//        envia_comando(3);
+//      }
+//    }
+//  }
 }
 
 void estado_jogando()
@@ -1124,6 +1143,19 @@ void loop() {
   {
     estado = 0;
     btConnect();
+    if(SerialBT.connected())
+    {
+      luz = 1;
+      envia_comando(3);
+      for(int j = 0; j < 3; j++)
+      {
+        for(int i = 0; i < 3; i++)
+        {
+          parcial[i][j] = '_';
+          vetor[i][j] = '_';
+        }
+      }
+    }
   }
   else
   {

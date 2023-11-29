@@ -18,16 +18,16 @@ servo4(23, -12, false,10)
     l3 = 71;
     h = -15; /*Altura desejada até o chão*/
     log = 0.1;
-    pieces = Position(190,142);
+    pieces = Position(187,140);
     positions[0][0] = Position(-60,85);  /*Inicia as posições do tabuleiro*/
     positions[1][0] = Position(-72,160);
     positions[2][0] = Position(-85,265);
     positions[0][1] = Position(22,50);
     positions[1][1] = Position(25,145);
-    positions[2][1] = Position(20,255);
+    positions[2][1] = Position(15,255);
     positions[0][2] = Position(57,38);
-    positions[1][2] = Position(108,140);
-    positions[2][2] = Position(115,242);
+    positions[1][2] = Position(97,140);
+    positions[2][2] = Position(100,242);
 }
 
 ServoManager::~ServoManager() 

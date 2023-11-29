@@ -2,6 +2,7 @@
 #define MINIMAX_H
 
 #include<bits/stdc++.h> 
+#include <stdlib.h>
 using namespace std; 
 
 struct Move 
@@ -12,6 +13,7 @@ struct Move
 class miniMax
 {
 private:
+    int dif;
     bool isMovesLeft(char board[3][3]);
     int evaluate(char b[3][3]);
     int minimax(char board[3][3], int depth, bool isMax);
